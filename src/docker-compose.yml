@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  php53-apache:
+    container_name: php53-apache
+    build:
+      context: .
+    tty: true
+    #entrypoint: /bin/bash
+    ports:
+      - 8000:80
+    volumes:
+      - /var/www:/var/www/html
+
+
