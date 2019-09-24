@@ -10,6 +10,8 @@ ENV LANG=${OS_LOCALE} \
     LANGUAGE=${OS_LOCALE} \
     LC_ALL=${OS_LOCALE}
 
+COPY qemu-arm-static /usr/bin
+
 RUN apt-get install -y build-essential zip autoconf 
 RUN apt-get install -y libfcgi-dev libfcgi0ldbl libmcrypt-dev libssl-dev libc-client2007e-dev libkrb5-dev libcurl4-openssl-dev wget
 WORKDIR /opt
@@ -80,6 +82,7 @@ RUN  mkdir -p /var/run/apache2
 RUN a2dismod mpm_event
 RUN a2enmod mpm_prefork
 
+RUN rm /usr/bin/qemu-arm-static
 
 # By default, simply start apache.
 CMD ["/sbin/entrypoint.sh"]
