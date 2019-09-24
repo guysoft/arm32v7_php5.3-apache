@@ -1,6 +1,8 @@
 FROM arm32v7/debian
 MAINTAINER romeOz <serggalka@gmail.com>
 
+COPY qemu-arm-static /usr/bin
+
 ENV PHP_VERSION=5.3 \
 	OS_LOCALE="en_US.UTF-8"
 RUN apt-get update
@@ -9,8 +11,6 @@ RUN locale-gen ${OS_LOCALE}
 ENV LANG=${OS_LOCALE} \
     LANGUAGE=${OS_LOCALE} \
     LC_ALL=${OS_LOCALE}
-
-COPY qemu-arm-static /usr/bin
 
 RUN apt-get install -y build-essential zip autoconf 
 RUN apt-get install -y libfcgi-dev libfcgi0ldbl libmcrypt-dev libssl-dev libc-client2007e-dev libkrb5-dev libcurl4-openssl-dev wget
